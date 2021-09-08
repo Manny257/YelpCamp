@@ -1,0 +1,36 @@
+<%- include ("../partials/header") %>
+<div class="containter mx-auto" style="width: 80%;">
+    
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12 text-center" style="height: 50%;">
+            <img src="https://cdn3.iconfinder.com/data/icons/summer-70/65/camping_tent-512.png" alt="avatar" class="img-thumbnail rounded-lg">
+            <h2> <%= user.firstName %> <%= user.lastName %> </h2>
+            <h4 id="username" class="text-muted"> @<%= user.username %> </h4>
+            <p class="text-muted"><%= campgrounds.length %> Campgrounds
+                <% if(currentUser && !currentUser._id.equals(user._id)){ %>
+                    <a href="/follow/<%=user._id%>" class="btn btn-outline-primary btn-sm py-0">Follow</a>
+                <% } %>
+            </p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quae, quaerat consectetur magni molestias dolores ullam minus error adipisci ad, id nostrum corrupti blanditiis ipsa aliquam voluptate a, illo incidunt.</p>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <% campgrounds.forEach(function(campground){ %>
+           <div class="col-sm-12 col-md-6 mb-4">
+              <div class="card">
+                 <img src="<%=campground.img %>" class="card-img-top">
+                 <div class="card-body">
+                   <h5 class="card-title"><%= campground.name %> </h5>
+                   <p class="card-text"> <%= campground.description.substring(0,100) %> ...</p>
+                   <a href="/campgrounds/<%=campground._id%>" class="btn btn-primary">More info</a>
+                 </div>
+               </div>  
+           </div> 
+        <% }) %>
+     </div> 
+
+</div>
+
+    <%- include ("../partials/footer") %>

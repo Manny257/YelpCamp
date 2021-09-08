@@ -1,0 +1,28 @@
+form a:hover {
+    text-decoration: none;
+}
+
+.img-thumbnail{
+    height: 200px;
+    width: 200px;
+}
+#username{
+    font-weight: 1;
+    margin-top: 0;
+}
+
+#notification{
+    background-color: silver;
+    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+ }
+
+ #notification .badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    padding-right: 6.8px;
+    padding-left: 6.8px;
+
+  }
