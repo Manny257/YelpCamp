@@ -9,6 +9,7 @@
             <p class="text-muted"><%= campgrounds.length %> Campgrounds
                 <% if(currentUser && !currentUser._id.equals(user._id)){ %>
                     <a href="/follow/<%=user._id%>" class="btn btn-outline-primary btn-sm py-0">Follow</a>
+                
                 <% } %>
             </p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati quae, quaerat consectetur magni molestias dolores ullam minus error adipisci ad, id nostrum corrupti blanditiis ipsa aliquam voluptate a, illo incidunt.</p>

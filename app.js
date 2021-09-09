@@ -8,7 +8,6 @@ var express        = require("express"),
     User           = require("./models/user"),
     Campground     = require("./models/campground"),
     Comment        = require("./models/comment"),
-    Notification   = require("./models/notification"),
     methodOverride = require("method-override"),
     flash          = require("connect-flash"),
     seedDB         = require("./seeds");
@@ -42,15 +41,6 @@ passport.deserializeUser(User.deserializeUser());
 app.use(async function(req, res, next){
     res.locals.currentUser = req.user;
     res.locals.moment = moment;
-    if(req.user) {
-     try {
-       let user = await User.findById(req.user._id).populate('notifications', null, { isRead: false }).exec();
-       res.locals.notifications = user.notifications.reverse();
-     } catch(err) {
-        req.flash("error", "Something went wrong");
-        res.redirect("back");
-     }
-    }
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();

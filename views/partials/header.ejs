@@ -33,27 +33,11 @@
                  <a class="nav-link" href="/register">Sign Up</a>
                </li>
             <% } else { %>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 <div id="notification" class="text-center ">
-                  <i class="fas fa-bell mt-2"> </i>
-                  <% if (notifications.length > 0){ %>
-                    <span class="badge badge-danger badge-pill"> <%= notifications.length %> </span>                
-                  <% } %>
-                </div>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="/notifications">View past notifications</a>
-                  <% notifications.forEach(function(notification){ %>
-                    <a class="dropdown-item" href="/notifications/ <%= notification.id %>">
-                    <%= notification.username %> created a new campground
-                    </a>
-                  <% }) %>
-                </div>
+              <li class="nav-item">
+                <span class="navbar-text px-2">
+                  Signed in as <a href="/users/<%= currentUser.id %>" > <%= currentUser.username %> </a>
+                </span>
               </li>
-              <span class="navbar-text px-2">
-                Signed in as <%=currentUser.username%>
-              </span>
               <li class="nav-item">
                 <a class="nav-link" href="/logout">Log Out</a>
               </li>

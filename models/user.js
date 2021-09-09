@@ -10,10 +10,6 @@ var userSchema=new mongoose.Schema({
     password:String,
     resetPasswordToken: String,
     resetPasswordExpires: Date,
-    notifications: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Notification"
-    }],
     followers: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

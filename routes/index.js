@@ -3,7 +3,6 @@ const { ifError } = require("assert");
 var express = require("express"),
   User = require("../models/user"),
   Campground = require("../models/campground"),
-  Notification = require("../models/notification"),
   passport = require("passport"),
   middleware = require("../Middleware"),
   async = require("async"),
@@ -221,33 +220,6 @@ router.get("/follow/:id", middleware.isLoggedIn, function(req,res){
     user.followers.push(req.user._id);
     user.save();
     res.redirect("/users/"+req.params.id);
-  });
-});
-
-//view all notofications
-router.get("/notofications", middleware.isLoggedIn, function (req,res) {
-  User.findById(req.params.id).populate({
-    path:"notifications",
-    options:{ sort: {"_id":-1} }   // sort descendingly 
-  }).exec(function(err,user){
-    if (err) {
-      req.flash("error", "something went wrong");
-      return res.redirect("/campgrounds");
-    }
-    res.render("notifications/index", {notifications: user.notifications });
-  });
-});
-
-//handle notification
-router.get("/notifications/:id", middleware.isLoggedIn, function(req,res){
-  Notification.findById(req.params.id,function (err,notification){
-    if (err) {
-      req.flash("error", "something went wrong");
-      return res.redirect("back");
-    }
-    notification.isRead = true;
-    notification.save();
-    res.redirect("/campgrounds/${notification.campgroundId}");
   });
 });
 
